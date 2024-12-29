@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">Välkommen</div>
+<a asp-controller="Authentication" asp-action="UserRegister">Registrera användare</a>
+<a asp-controller="Authentication" asp-action="UserLogin">Logga in</a>
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <div>Inloggad</div>
+    <a asp-controller="Account" asp-action="Index">Mitt konto</a>
+    <a asp-controller="Authentication" asp-action="UserLogout">Logga ut</a>
+
+}

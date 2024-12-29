@@ -1,0 +1,9 @@
+﻿@model UserRegisterViewModel 
+<div>Registrera konto</div>
+
+<form method="post" asp-controller="Authentication" asp-action="UserRegister">
+    <input asp-for="UserName" placeholder="Användarnamn"/>
+    <input type="email" asp-for="Email" placeholder="Email"/>
+    <input type="password" asp-for="Password" placeholder="Lösenord"/>
+    <button type="submit">Registrera</button>
+</form>

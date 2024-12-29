@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ReviewApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ReviewApp.props",
+      "PackagePath": "build\\ReviewApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ReviewApp.props",
+      "PackagePath": "buildMultiTargeting\\ReviewApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ReviewApp.props",
+      "PackagePath": "buildTransitive\\ReviewApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

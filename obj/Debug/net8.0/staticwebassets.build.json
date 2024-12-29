@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "00+3h2N822urusJ7/bpZ+V1OHd2cMto7NK6GFRHIW00=",
+  "Source": "ReviewApp",
+  "BasePath": "_content/ReviewApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ReviewApp\\wwwroot",
+      "Source": "ReviewApp",
+      "ContentRoot": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\",
+      "BasePath": "_content/ReviewApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\css\\site.css",
+      "SourceId": "ReviewApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\",
+      "BasePath": "_content/ReviewApp",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\favicon.ico",
+      "SourceId": "ReviewApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\",
+      "BasePath": "_content/ReviewApp",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\js\\site.js",
+      "SourceId": "ReviewApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\anton\\source\\repos\\ReviewApp\\ReviewApp\\wwwroot\\",
+      "BasePath": "_content/ReviewApp",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
+    }
+  ]
+}
