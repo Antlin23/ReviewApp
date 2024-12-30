@@ -9,11 +9,14 @@ namespace ReviewApp {
 
         }
 
+        public DbSet<ReviewEntity> Reviews { get; set; }
+        public DbSet<ItemEntity> Items { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityRole>().HasData(
+            /*builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -28,8 +31,9 @@ namespace ReviewApp {
                     NormalizedName = "ADMIN",
                     ConcurrencyStamp = Guid.NewGuid().ToString()
                 }
+            
             );
-
+            */
         }
     }
 }

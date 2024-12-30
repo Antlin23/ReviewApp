@@ -169,3 +169,4 @@ C:\Users\anton\source\repos\ReviewApp\ReviewApp\bin\Debug\net8.0\runtimes\browse
 C:\Users\anton\source\repos\ReviewApp\ReviewApp\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\anton\source\repos\ReviewApp\ReviewApp\obj\Debug\net8.0\ReviewApp.csproj.AssemblyReference.cache
 C:\Users\anton\source\repos\ReviewApp\ReviewApp\obj\Debug\net8.0\ReviewApp.csproj.Up2Date
+C:\Users\anton\source\repos\ReviewApp\ReviewApp\obj\Debug\net8.0\ReviewApp.sourcelink.json

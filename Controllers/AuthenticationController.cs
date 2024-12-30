@@ -4,18 +4,19 @@ using ReviewApp.ViewModels;
 using ReviewApp.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using ReviewApp.Services;
 
 namespace ReviewApp.Controllers {
     public class AuthenticationController : Controller {
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
-        private readonly AppDbContext _appDbContext;
+        private readonly AuthenticationService _authService;
 
-        public AuthenticationController(UserManager<UserEntity> userManager, AppDbContext appDbContext, SignInManager<UserEntity> signInManager)
+        public AuthenticationController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AuthenticationService authService)
         {
             _userManager = userManager;
-            _appDbContext = appDbContext;
             _signInManager = signInManager;
+            _authService = authService;
         }
 
         public IActionResult Index()
@@ -32,19 +33,12 @@ namespace ReviewApp.Controllers {
         {
             if (ModelState.IsValid)
             {
+
                 try
                 {
                     if (!await _userManager.Users.AnyAsync(x => x.Email == viewModel.Email))
                     {
-                        var result = await _userManager.CreateAsync(viewModel, viewModel.Password);
-
-                        //if user is created, add the role user 
-                        if (result.Succeeded)
-                        {
-                            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == viewModel.Email);
-                            if (user != null)
-                                await _userManager.AddToRoleAsync(user, "user");
-                        }
+                        await _authService.UserRegisterAsync(viewModel);
                     }
                 }
                 catch (Exception ex)
@@ -52,7 +46,8 @@ namespace ReviewApp.Controllers {
                     Debug.WriteLine(ex.Message);
                     return View();
                 }
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("UserLogin", "Authentication");
             }
             return View(viewModel);
 

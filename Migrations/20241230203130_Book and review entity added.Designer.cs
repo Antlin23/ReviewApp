@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReviewApp;
 
@@ -11,9 +12,11 @@ using ReviewApp;
 namespace ReviewApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241230203130_Book and review entity added")]
+    partial class Bookandreviewentityadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,7 +158,7 @@ namespace ReviewApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ReviewApp.Entities.ItemEntity", b =>
+            modelBuilder.Entity("ReviewApp.Entities.BookEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -167,7 +170,7 @@ namespace ReviewApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.ToTable("BookEntity");
                 });
 
             modelBuilder.Entity("ReviewApp.Entities.ReviewEntity", b =>
@@ -176,11 +179,11 @@ namespace ReviewApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -191,11 +194,11 @@ namespace ReviewApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("BookId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("ReviewEntity");
                 });
 
             modelBuilder.Entity("ReviewApp.Entities.UserEntity", b =>
@@ -316,9 +319,9 @@ namespace ReviewApp.Migrations
 
             modelBuilder.Entity("ReviewApp.Entities.ReviewEntity", b =>
                 {
-                    b.HasOne("ReviewApp.Entities.ItemEntity", "Item")
+                    b.HasOne("ReviewApp.Entities.BookEntity", "Book")
                         .WithMany("Reviews")
-                        .HasForeignKey("ItemId")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -328,12 +331,12 @@ namespace ReviewApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Item");
+                    b.Navigation("Book");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ReviewApp.Entities.ItemEntity", b =>
+            modelBuilder.Entity("ReviewApp.Entities.BookEntity", b =>
                 {
                     b.Navigation("Reviews");
                 });

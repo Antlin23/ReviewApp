@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ReviewApp.Entities;
 using ReviewApp;
 using System;
+using ReviewApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,13 +19,13 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 
 builder.Services.AddControllersWithViews();
 
-
-
 builder.Services.ConfigureApplicationCookie(x =>
 {
     x.LoginPath = "/Authentication/UserLogin";
     x.AccessDeniedPath = "/denied";
 });
+
+builder.Services.AddScoped<AuthenticationService>();
 
 
 var app = builder.Build();

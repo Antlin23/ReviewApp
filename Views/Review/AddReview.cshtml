@@ -1,0 +1,9 @@
+﻿@model AddReviewViewModel
+<div>Ny recension</div>
+
+<form method="post">
+    <input asp-for="ItemId" type="text" placeholder="Bok" />
+    <input asp-for="Rating" type="number" placeholder="Bedömmning, 1-10 *" />
+    <input asp-for="Comment" type="text" placeholder="Beskrivning" />
+    <button type="submit">Skapa</button>
+</form>

@@ -2,6 +2,6 @@
 
 namespace ReviewApp.Entities {
     public class UserEntity : IdentityUser {
-        //might need later
+        public ICollection<ReviewEntity> Reviews { get; } = new HashSet<ReviewEntity>();
     }
 }
