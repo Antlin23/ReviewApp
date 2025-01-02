@@ -1,1 +1,22 @@
-﻿<div>Välkommen @User.Identity.Name</div>
+﻿@using ReviewApp.Services;
+@inject ReviewService reviewService;
+@{
+    var reviews = await reviewService.GetUserReviewsAsync(User.FindFirst("Id").Value);
+}
+
+<div>Välkommen @User.Identity.Name</div>
+
+<h1>Dina recensioner:</h1>
+
+<div>
+    @foreach (var review in reviews)
+    {
+        <div class="border">
+            <h2>@review.Rating</h2>
+            <p>@review.Comment</p>
+        </div>
+    }
+
+</div>
+
+

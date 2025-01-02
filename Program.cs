@@ -27,6 +27,7 @@ builder.Services.ConfigureApplicationCookie(x =>
 });
 
 builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<ReviewService>();
 
 
 var app = builder.Build();
