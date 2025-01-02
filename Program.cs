@@ -15,7 +15,8 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
     x.User.RequireUniqueEmail = true;
     x.Password.RequiredLength = 6;
 }).AddEntityFrameworkStores<AppDbContext>()
-     .AddDefaultTokenProviders();
+     .AddDefaultTokenProviders()
+     .AddClaimsPrincipalFactory<CustomClaimsPrincipalFactory>();
 
 builder.Services.AddControllersWithViews();
 
