@@ -1,17 +1,4 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div class="container">Välkommen</div>
-
-@if (User.Identity!.IsAuthenticated)
-{
-    <div>Inloggad @User.Identity.Name</div>
-    <a asp-controller="Account" asp-action="Index">Mitt konto</a>
-    <a asp-controller="Review" asp-action="AddReview">Ny recension</a>
-    <a asp-controller="Authentication" asp-action="UserLogout">Logga ut</a>
-}
-else
-{
-    <a asp-controller="Authentication" asp-action="UserRegister">Registrera användare</a>
-    <a asp-controller="Authentication" asp-action="UserLogin">Logga in</a>
-}
+<div>Välkommen</div>

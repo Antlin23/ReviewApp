@@ -1,0 +1,22 @@
+﻿@model AddReviewSearchItemViewModel
+<h1>Ny recension</h1>
+
+<h2>Steg 1: Välj bok</h2>
+
+<form method="post">
+    <div>
+        <input asp-for="SearchString" type="text" placeholder="Sök bok" />
+        <a asp-action="AddItem" asp-controller="Item">Lägg till ny bok</a>
+    </div>
+
+    @if(Model != null)
+    {
+        @foreach (var item in Model.SearchHits)
+        {
+            <div class="border">@item.Title</div>
+        }
+    }
+
+
+    <a asp-action="AddReview2" asp-controller="Review">Nästa sida</a>
+</form>

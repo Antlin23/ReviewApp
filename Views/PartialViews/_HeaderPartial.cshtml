@@ -1,0 +1,14 @@
+﻿<header class="container">
+    <a asp-controller="Home" asp-action="Index">Hem</a>
+    @if (User.Identity!.IsAuthenticated)
+    {
+        <a asp-controller="Account" asp-action="Index">Mitt konto</a>
+        <a asp-controller="Review" asp-action="AddReview1">Ny recension</a>
+        <a asp-controller="Authentication" asp-action="UserLogout">Logga ut</a>
+    }
+    else
+    {
+        <a asp-controller="Authentication" asp-action="UserRegister">Registrera användare</a>
+        <a asp-controller="Authentication" asp-action="UserLogin">Logga in</a>
+    }
+</header>

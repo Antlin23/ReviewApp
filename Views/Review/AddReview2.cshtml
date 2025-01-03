@@ -1,0 +1,20 @@
+﻿@model AddReviewViewModel
+<h1>Ny recension</h1>
+
+<h2>Steg 2: Recensera</h2>
+
+<form method="post">
+    <div>
+        <input asp-for="Rating" type="number" placeholder="Bedömmning, 1-10 *" />
+    </div>
+
+    <div>
+        <input asp-for="Comment" type="text" placeholder="Beskrivning" />
+    </div>
+
+    <input asp-for=UserId value="@User.FindFirst("Id").Value" hidden/>
+
+    <a asp-action="AddReview1" asp-controller="Review">Tillbaka</a>
+
+    <button type="submit">Skapa</button>
+</form>

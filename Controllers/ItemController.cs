@@ -32,7 +32,7 @@ namespace ReviewApp.Controllers {
                     return View(viewModel);
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("AddReview1", "Review");
             }
             return View(viewModel);
         }
