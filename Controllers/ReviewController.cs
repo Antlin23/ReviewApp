@@ -40,8 +40,10 @@ namespace ReviewApp.Controllers {
             return View(viewModel);
         }
 
-        public IActionResult AddReview2()
+        public IActionResult AddReview2(string itemId)
         {
+            ViewData["ItemId"] = itemId;
+
             return View();
         }
 

@@ -11,10 +11,15 @@
     <div>
         <input asp-for="Comment" type="text" placeholder="Beskrivning" />
     </div>
-
-    <input asp-for=UserId value="@User.FindFirst("Id").Value" hidden/>
-
     <a asp-action="AddReview1" asp-controller="Review">Tillbaka</a>
+
+    <input asp-for=UserId value="@User.FindFirst("Id").Value" hidden />
+
+    @{
+        var itemId = ViewData["ItemId"].ToString();
+    }
+
+    <input asp-for=ItemId value="@itemId" hidden />
 
     <button type="submit">Skapa</button>
 </form>

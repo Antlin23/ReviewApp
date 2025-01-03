@@ -6,17 +6,18 @@
 <form method="post">
     <div>
         <input asp-for="SearchString" type="text" placeholder="Sök bok" />
+        <button type="submit">Sök</button>
         <a asp-action="AddItem" asp-controller="Item">Lägg till ny bok</a>
     </div>
 
     @if(Model != null)
     {
-        @foreach (var item in Model.SearchHits)
+
+        foreach (var item in Model.SearchHits)
         {
-            <div class="border">@item.Title</div>
+            <div>
+                <a asp-action="AddReview2" asp-controller="Review" asp-route-itemId="@item.Id">@item.Title</a>
+            </div>
         }
     }
-
-
-    <a asp-action="AddReview2" asp-controller="Review">Nästa sida</a>
 </form>
