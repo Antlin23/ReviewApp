@@ -14,7 +14,6 @@
         <div>
             <div>@user.UserName</div>
             <a asp-action="Index" asp-controller="Account" asp-route-userId="@user.Id">Visa profil</a>
-            <a asp-action="FollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Följ</a>
         </div>
     }
 }

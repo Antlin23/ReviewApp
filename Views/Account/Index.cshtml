@@ -18,6 +18,9 @@
 
 <h1>@user.UserName</h1>
 
+<a asp-action="FollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Följ</a>
+
+
 <div>Recensioner:</div>
 
 <div>
@@ -28,7 +31,6 @@
             <p>@review.Comment</p>
         </div>
     }
-
 </div>
 
 

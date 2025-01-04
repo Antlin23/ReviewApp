@@ -39,7 +39,7 @@ namespace ReviewApp.Controllers {
         {
 
 
-            return RedirectToAction("FindUsers");
+            return RedirectToAction("Index", "Account",new { UserId = followeeId } );
         }
     }
 }
