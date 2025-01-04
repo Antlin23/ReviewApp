@@ -1,12 +1,24 @@
-﻿@using ReviewApp.Services;
+﻿@using Microsoft.AspNetCore.Identity
+@using ReviewApp.Services;
 @inject ReviewService reviewService;
+@inject UserManager<UserEntity> userManager;
 @{
-    var reviews = await reviewService.GetUserReviewsAsync(User.FindFirst("Id").Value);
+    //Default is logged in user
+    var userId = User.FindFirst("Id").Value;
+
+    if (ViewData["UserId"].ToString() != Guid.Empty.ToString())
+    {
+        userId = ViewData["UserId"].ToString();
+    }
+
+    var user = userManager.Users.First(x => x.Id == userId);
+
+    var reviews = await reviewService.GetUserReviewsAsync(userId);
 }
 
-<div>Välkommen @User.Identity.Name</div>
+<h1>@user.UserName</h1>
 
-<h1>Dina recensioner:</h1>
+<div>Recensioner:</div>
 
 <div>
     @foreach (var review in reviews)

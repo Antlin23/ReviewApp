@@ -1,0 +1,20 @@
+﻿@model SearchUsersViewModel
+
+<h1>Hitta vänner</h1>
+
+<form method="post">
+    <input asp-for="SearchString" placeholder="Hitta vänner"/>
+    <button type="submit">Sök</button>
+</form>
+
+@if(Model != null)
+{
+    @foreach(var user in Model.SearchHits)
+    {
+        <div>
+            <div>@user.UserName</div>
+            <a asp-action="Index" asp-controller="Account" asp-route-userId="@user.Id">Visa profil</a>
+            <a asp-action="FollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Följ</a>
+        </div>
+    }
+}

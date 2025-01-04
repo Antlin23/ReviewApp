@@ -11,6 +11,7 @@ namespace ReviewApp {
 
         public DbSet<ReviewEntity> Reviews { get; set; }
         public DbSet<ItemEntity> Items { get; set; }
+        public DbSet<FollowEntity> Follows { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
