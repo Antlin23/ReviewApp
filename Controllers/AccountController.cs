@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ReviewApp.Entities;
 using ReviewApp.Services;
 using ReviewApp.ViewModels;
+using System.Diagnostics;
 
 namespace ReviewApp.Controllers {
     [Authorize]
@@ -35,9 +37,16 @@ namespace ReviewApp.Controllers {
         }
 
 
-        public IActionResult FollowUser(string followerId, string followeeId)
+        public async Task<IActionResult> FollowUser(string followerId, string followeeId)
         {
-
+            try
+            {
+                await _accountService.FollowUserAsync(followerId, followeeId);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
 
             return RedirectToAction("Index", "Account",new { UserId = followeeId } );
         }

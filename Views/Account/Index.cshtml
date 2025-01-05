@@ -1,25 +1,41 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using ReviewApp.Services;
 @inject ReviewService reviewService;
+@inject AccountService accountService;
 @inject UserManager<UserEntity> userManager;
 @{
     //Default is logged in user
     var userId = User.FindFirst("Id").Value;
 
+    //Users own page
+    bool myAccount = true;
+
     if (ViewData["UserId"].ToString() != Guid.Empty.ToString())
     {
         userId = ViewData["UserId"].ToString();
+        myAccount = false;
     }
 
     var user = userManager.Users.First(x => x.Id == userId);
 
     var reviews = await reviewService.GetUserReviewsAsync(userId);
+
+    //follows
+    var follows = await accountService.GetUserFollowsAsync(userId);
 }
 
 <h1>@user.UserName</h1>
 
-<a asp-action="FollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Följ</a>
+<div>Följer:</div>
+@foreach(var follow in follows)
+{
+    <div>@follow.UserName</div>
+}
 
+@if (!myAccount)
+{
+    <a asp-action="FollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Följ</a>
+}
 
 <div>Recensioner:</div>
 
