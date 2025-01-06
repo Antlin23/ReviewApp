@@ -1,0 +1,13 @@
+﻿@using ReviewApp.Services
+@inject AccountService accountService;
+@{
+    var userId = ViewData["UserId"].ToString();
+
+    var follows = await accountService.GetUserFollowsAsync(userId);
+}
+
+<div>Följer:</div>
+@foreach (var follow in follows)
+{
+    <a asp-action="Index" asp-controller="Account" asp-route-userId="@follow.Id">@follow.UserName</a>
+}

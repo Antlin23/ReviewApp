@@ -32,6 +32,13 @@ namespace ReviewApp.Services {
                 if (followerId != followeeId)
                 {
                     await _context.Follows.AddAsync(follow);
+                    
+                    //adds to followers and followee amount
+                    var followee = await _userManager.FindByIdAsync(followeeId);
+                    followee.AmountOfFollowers++;
+
+                    var follower = await _userManager.FindByIdAsync(followerId);
+                    follower.AmountOfFollows++;
 
                     await _context.SaveChangesAsync();
                 }
@@ -46,7 +53,14 @@ namespace ReviewApp.Services {
 
             _context.Follows.Remove(follow);
 
-            await _context.SaveChangesAsync();            
+            //updates follower and followee amount
+            var followee = await _userManager.FindByIdAsync(followeeId);
+            followee.AmountOfFollowers--;
+
+            var follower = await _userManager.FindByIdAsync(followerId);
+            follower.AmountOfFollows--;
+
+            await _context.SaveChangesAsync();
         }
 
 

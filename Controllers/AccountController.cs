@@ -22,6 +22,20 @@ namespace ReviewApp.Controllers {
             return View(userId);
         }
 
+        public IActionResult UserFollowers(string userId)
+        {
+            ViewData["UserId"] = userId;
+
+            return View();
+        }
+
+        public IActionResult UserFollows(string userId)
+        {
+            ViewData["UserId"] = userId;
+
+            return View();
+        }
+
         public IActionResult FindUsers()
         {
             return View();

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using ReviewApp.Models;
 using System.Diagnostics;
 
 namespace ReviewApp.Controllers {
