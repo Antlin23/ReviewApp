@@ -28,11 +28,29 @@ namespace ReviewApp.Services {
 
             //if user not already follows
             if (!_context.Follows.Any(x => x.FollowerId == followerId && x.FolloweeId == followeeId)) {
-                await _context.Follows.AddAsync(follow);
+                //if the user isent following himself
+                if (followerId != followeeId)
+                {
+                    await _context.Follows.AddAsync(follow);
 
-                await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
+                }
             }
         }
+
+
+        public async Task UnfollowUserAsync(string followerId, string followeeId)
+        {
+            //if user not already follows
+            var follow = _context.Follows.First(x => x.FollowerId == followerId && x.FolloweeId == followeeId);
+
+            _context.Follows.Remove(follow);
+
+            await _context.SaveChangesAsync();            
+        }
+
+
+
 
         public async Task<List<UserEntity>> GetUserFollowsAsync(string userId) {
             var follows = _context.Follows.Where(x => x.FollowerId == userId).ToList();
@@ -46,6 +64,27 @@ namespace ReviewApp.Services {
             }
 
             return users;
+        }
+
+        public async Task<List<UserEntity>> GetUserFollowersAsync(string userId)
+        {
+            var follows = _context.Follows.Where(x => x.FolloweeId == userId).ToList();
+
+            var users = new List<UserEntity>();
+
+            foreach (var follow in follows)
+            {
+                var user = await _userManager.FindByIdAsync(follow.FollowerId);
+
+                users.Add(user);
+            }
+
+            return users;
+        }
+
+        public async Task<bool> UserIsFollowingUserAsync(string followerId, string followeeId)
+        {
+            return await _context.Follows.Where(x => x.FollowerId == followerId && x.FolloweeId == followeeId).AnyAsync();
         }
     }
 }

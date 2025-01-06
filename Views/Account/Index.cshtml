@@ -13,7 +13,11 @@
     if (ViewData["UserId"].ToString() != Guid.Empty.ToString())
     {
         userId = ViewData["UserId"].ToString();
-        myAccount = false;
+        //if user is on its own page
+        if (userId != User.FindFirst("Id").Value)
+        {
+            myAccount = false;
+        }
     }
 
     var user = userManager.Users.First(x => x.Id == userId);
@@ -22,6 +26,8 @@
 
     //follows
     var follows = await accountService.GetUserFollowsAsync(userId);
+    //followers
+    var followers = await accountService.GetUserFollowersAsync(userId);
 }
 
 <h1>@user.UserName</h1>
@@ -32,10 +38,24 @@
     <div>@follow.UserName</div>
 }
 
+<div>Följare:</div>
+@foreach (var follow in followers)
+{
+    <div>@follow.UserName</div>
+}
+
 @if (!myAccount)
 {
-    <a asp-action="FollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Följ</a>
+    if (await accountService.UserIsFollowingUserAsync(User.FindFirst("Id").Value, userId))
+    {
+        <a asp-action="UnfollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Sluta följa</a>
+    }
+    else
+    {
+        <a asp-action="FollowUser" asp-controller="Account" asp-route-followerId="@User.FindFirst("Id").Value" asp-route-followeeId="@user.Id">Följ</a>
+    }
 }
+
 
 <div>Recensioner:</div>
 
