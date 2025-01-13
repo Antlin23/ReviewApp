@@ -11,11 +11,14 @@ namespace ReviewApp.Services {
             _context = context;
         }
 
-        public async Task<IEnumerable<ReviewEntity>> GetUserReviewsAsync(string UserId)
+        public async Task<IEnumerable<ReviewEntity>> GetUserReviewsAsync(string userId)
         {
-            var reviews = await _context.Reviews.Where(x => x.UserId == UserId).ToListAsync();
+            return await _context.Reviews.Where(x => x.UserId == userId).ToListAsync();
+        }
 
-            return reviews;
+        public async Task<IEnumerable<ReviewEntity>> GetItemReviewsAsync(Guid itemId)
+        {
+            return await _context.Reviews.Where(x => x.ItemId == itemId).ToListAsync();
         }
     }
 }

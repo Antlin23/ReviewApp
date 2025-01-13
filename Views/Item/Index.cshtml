@@ -1,8 +1,23 @@
-﻿@using ReviewApp.Services
+﻿@using Microsoft.AspNetCore.Identity
+@using ReviewApp.Services
 @inject ItemService itemService
+@inject ReviewService reviewService
+@inject UserManager<UserEntity> userManager
 
 @{
     var item = await itemService.GetItemAsync(Guid.Parse(ViewData["itemId"].ToString()));
+
+    var reviews = await reviewService.GetItemReviewsAsync(item.Id);
 }
 
 <div>@item.Title</div>
+
+@foreach(var review in reviews)
+{
+    var user = await userManager.FindByIdAsync(review.UserId);
+
+    <p>@review.Rating</p>
+    <p>@review.Comment</p>
+    <a asp-action="Index" asp-controller="Account" asp-route-userId="@user?.Id">@user?.UserName</a>
+
+}
