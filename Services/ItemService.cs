@@ -15,5 +15,10 @@ namespace ReviewApp.Services {
         {
             return await _context.Items.Where(x => x.Title.ToUpper().Contains(viewModel.SearchString.ToUpper())).ToListAsync();
         }
+
+        public async Task<ItemEntity> GetItemAsync(Guid itemId)
+        {
+            return await _context.Items.FirstAsync(x => x.Id == itemId);
+        }
     }
 }

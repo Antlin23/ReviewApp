@@ -1,0 +1,8 @@
+﻿@using ReviewApp.Services
+@inject ItemService itemService
+
+@{
+    var item = await itemService.GetItemAsync(Guid.Parse(ViewData["itemId"].ToString()));
+}
+
+<div>@item.Title</div>

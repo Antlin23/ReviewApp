@@ -14,6 +14,13 @@ namespace ReviewApp.Controllers {
             _appDbContext = appDbContext;
         }
 
+        public IActionResult Index(String itemId)
+        {
+            ViewData["itemId"] = itemId;
+
+            return View();
+        }
+
         public IActionResult AddItem()
         {
             return View();
