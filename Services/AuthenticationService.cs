@@ -12,9 +12,11 @@ namespace ReviewApp.Services {
             _userManager = userManager;
         }
 
-        public async Task UserRegisterAsync(UserRegisterViewModel viewModel)
+        public async Task<IdentityResult> UserRegisterAsync(UserRegisterViewModel viewModel)
         {
             var result = await _userManager.CreateAsync(viewModel, viewModel.Password);
+
+            return result;
 
             //if user is created, add the role user 
             //Roles is not created right now

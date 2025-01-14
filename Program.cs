@@ -13,7 +13,10 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configur
 builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 {
     x.User.RequireUniqueEmail = true;
-    x.Password.RequiredLength = 6;
+    x.Password.RequiredLength = 5;
+    x.Password.RequireUppercase = false;
+    x.Password.RequireLowercase = false;
+    x.Password.RequireNonAlphanumeric = false;
 }).AddEntityFrameworkStores<AppDbContext>()
      .AddDefaultTokenProviders()
      .AddClaimsPrincipalFactory<CustomClaimsPrincipalFactory>();

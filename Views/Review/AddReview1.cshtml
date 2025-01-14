@@ -10,9 +10,8 @@
         <a asp-action="AddItem" asp-controller="Item">Lägg till ny bok</a>
     </div>
 
-    @if(Model != null)
+    @if(Model != null && Model.SearchHits != null)
     {
-
         foreach (var item in Model.SearchHits)
         {
             <div>

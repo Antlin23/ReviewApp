@@ -33,24 +33,26 @@ namespace ReviewApp.Controllers {
         {
             if (ModelState.IsValid)
             {
-
                 try
                 {
                     if (!await _userManager.Users.AnyAsync(x => x.Email == viewModel.Email))
                     {
-                        await _authService.UserRegisterAsync(viewModel);
+                        var result = await _authService.UserRegisterAsync(viewModel);
+                        if (result.Succeeded) {
+                            return RedirectToAction("UserLogin", "Authentication");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Något gick fel, välj logga in om du redan har ett konto.");
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
-                    return View();
                 }
-
-                return RedirectToAction("UserLogin", "Authentication");
             }
             return View(viewModel);
-
         }
 
         public IActionResult UserLogin()

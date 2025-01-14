@@ -1,9 +1,18 @@
 ﻿@model UserRegisterViewModel 
 <div>Registrera konto</div>
 
-<form method="post" asp-controller="Authentication" asp-action="UserRegister">
+<form method="post" asp-controller="Authentication" asp-action="UserRegister" novalidate>
+
+    <span asp-validation-for="UserName"></span>
     <input asp-for="UserName" placeholder="Användarnamn"/>
+
+    <span asp-validation-for="Email"></span>
     <input type="email" asp-for="Email" placeholder="Email"/>
+
+    <span asp-validation-for="Password"></span>
     <input type="password" asp-for="Password" placeholder="Lösenord"/>
+
     <button type="submit">Registrera</button>
+
+    <div asp-validation-summary="ModelOnly"></div>
 </form>
