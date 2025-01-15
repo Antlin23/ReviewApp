@@ -8,12 +8,17 @@ namespace ReviewApp.ViewModels {
         [StringLength(20, ErrorMessage = "Användarnamnet måste vara minst 3 tecken långt", MinimumLength = 3)]
         [RegularExpression(@"^[A-Za-z0-9._]*$", ErrorMessage = "Användarnamnet får endast innehålla bokstäver (inte åäö), siffror, punkter och understreck.")]
         public string UserName { get; set; } = null!;
+
         [Required(ErrorMessage = "Du måste ange epostadress")]
+        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Vänligen ange en korrekt epostadress")]
         public string Email { get; set; } = null!;
+
+
         [Required(ErrorMessage = "Du måste ange ett lösenord")]
         [StringLength(40, ErrorMessage = "Lösenordet måste vara minst 5 tecken långt", MinimumLength = 5)]
         [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d).*$", ErrorMessage = "Lösenordet måste inehålla minst en bokstav och en siffra")]
         public string Password { get; set; } = null!;
+
 
         public static implicit operator UserEntity(UserRegisterViewModel viewModel)
         {

@@ -35,6 +35,11 @@ namespace ReviewApp.Controllers {
             {
                 try
                 {
+                    if (await _userManager.Users.AnyAsync(x => x.UserName == viewModel.UserName))
+                    {
+                        ModelState.AddModelError("", "Användarnamnet finns redan");
+                        return View(viewModel);
+                    }
                     if (!await _userManager.Users.AnyAsync(x => x.Email == viewModel.Email))
                     {
                         var result = await _authService.UserRegisterAsync(viewModel);
@@ -66,14 +71,22 @@ namespace ReviewApp.Controllers {
             {
                 var user = await _userManager.FindByEmailAsync(viewModel.Email);
 
+                if (user == null) {
+                    ModelState.AddModelError("", "Något gick snett, registrera konto om du är ny");
+                    return View(viewModel);
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(user.UserName, viewModel.Password, true, false);
 
                 if(result.Succeeded)
                     return RedirectToAction("Index", "Account");
+                else
+                    ModelState.AddModelError("", "Något gick snett");
+
                 return View(viewModel);
             }
-            return View(viewModel);
 
+            return View(viewModel);
         }
 
         public async Task<IActionResult> UserLogout()
