@@ -58,6 +58,11 @@
             <a asp-controller="Item" asp-action="Index" asp-route-itemId="@item.Id">@item.Title</a>
             <h2>@review.Rating</h2>
             <p>@review.Comment</p>
+
+            @if (myAccount)
+            {
+                <a asp-controller="Review" asp-action="RemoveReview" asp-route-reviewId="@review.Id">Ta bort</a>
+            }
         </div>
     }
 </div>

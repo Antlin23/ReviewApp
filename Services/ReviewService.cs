@@ -20,5 +20,11 @@ namespace ReviewApp.Services {
         {
             return await _context.Reviews.Where(x => x.ItemId == itemId).ToListAsync();
         }
+
+        public async Task RemoveReviewAsync(Guid reviewId)
+        {
+            _context.Reviews.Remove(await _context.Reviews.FirstAsync(x => x.Id == reviewId));
+            await _context.SaveChangesAsync();
+        }
     }
 }

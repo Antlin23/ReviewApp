@@ -9,11 +9,13 @@ namespace ReviewApp.Controllers {
     public class ReviewController : Controller {
         private readonly AppDbContext _appDbContext;
         private readonly ItemService _itemService;
+        private readonly ReviewService _reviewService;
 
-        public ReviewController(AppDbContext appDbContext, ItemService itemService)
+        public ReviewController(AppDbContext appDbContext, ItemService itemService, ReviewService reviewService)
         {
             _appDbContext = appDbContext;
             _itemService = itemService;
+            _reviewService = reviewService;
         }
 
         public IActionResult AddReview1()
@@ -63,9 +65,22 @@ namespace ReviewApp.Controllers {
                     return View(viewModel);
                 }
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Account");
             }
             return View(viewModel);
+        }
+
+        public async Task<IActionResult> RemoveReview(Guid reviewId)
+        {
+            try
+            {
+                await _reviewService.RemoveReviewAsync(reviewId);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return RedirectToAction("Index", "Account"); 
         }
     }
 }
