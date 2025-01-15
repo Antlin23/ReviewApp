@@ -56,8 +56,7 @@ namespace ReviewApp.Controllers {
             {
                 try
                 {
-                    await _appDbContext.Reviews.AddAsync(viewModel);
-                    await _appDbContext.SaveChangesAsync();
+                    await _reviewService.AddReviewAsync(viewModel);
                 }
                 catch (Exception ex)
                 {

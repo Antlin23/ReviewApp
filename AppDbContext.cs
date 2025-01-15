@@ -17,24 +17,23 @@ namespace ReviewApp {
         {
             base.OnModelCreating(builder);
 
-            /*builder.Entity<IdentityRole>().HasData(
+            builder.Entity<IdentityRole>().HasData(
                 new IdentityRole
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "9493816a-8694-4b62-a009-946c82e6934a",
                     Name = "User",
                     NormalizedName = "USER",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
+                    ConcurrencyStamp = "29b4593c-4fce-45bc-bea4-1871a7414176"
                 },
                 new IdentityRole
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = "dafeb7af-d905-4782-9497-87bfa0355748",
                     Name = "Admin",
                     NormalizedName = "ADMIN",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
+                    ConcurrencyStamp = "74ac6a09-4b6b-4472-86c8-6f44f1c3967e"
                 }
-            
             );
-            */
+
         }
     }
 }

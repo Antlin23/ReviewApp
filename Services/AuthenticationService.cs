@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using ReviewApp.Entities;
 using ReviewApp.ViewModels;
 using System.Diagnostics;
@@ -18,16 +19,13 @@ namespace ReviewApp.Services {
 
             return result;
 
-            //if user is created, add the role user 
-            //Roles is not created right now
-            /*
-            if (result.Succeeded)
-            {
-                var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == viewModel.Email);
-                 if (user != null)
-                     await _userManager.AddToRoleAsync(user, "user");
-            }
-            */
+            //if user is created, add the role user
+            //if (result.Succeeded)
+            //{
+            //    var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == viewModel.Email);
+            //    if (user != null)
+            //        await _userManager.AddToRoleAsync(user, "user");
+            //}
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReviewApp.Entities;
+using ReviewApp.ViewModels;
 using System.Collections;
 
 namespace ReviewApp.Services {
@@ -19,6 +20,12 @@ namespace ReviewApp.Services {
         public async Task<IEnumerable<ReviewEntity>> GetItemReviewsAsync(Guid itemId)
         {
             return await _context.Reviews.Where(x => x.ItemId == itemId).ToListAsync();
+        }
+
+        public async Task AddReviewAsync(AddReviewViewModel viewModel)
+        {
+            await _context.Reviews.AddAsync(viewModel);
+            await _context.SaveChangesAsync();
         }
 
         public async Task RemoveReviewAsync(Guid reviewId)
