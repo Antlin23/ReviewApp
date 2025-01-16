@@ -66,3 +66,9 @@
         </div>
     }
 </div>
+
+<!--Should use role-->
+@if (user.UserName == "admin")
+{
+    <a asp-action="Index" asp-controller="Admin">Admin</a>
+}

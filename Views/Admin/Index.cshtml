@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<UserEntity> userManager
+@{
+    var user = userManager.Users.First(x => x.UserName == User.Identity.Name);
+}
+
+<!--Should use role-->
+@if(user.UserName == "admin")
+{
+    <div>Admin</div>
+}
+else
+{
+    <div>Du har ej behörighet hit</div>
+}
